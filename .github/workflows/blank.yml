@@ -1,0 +1,19 @@
+name: "Deploy Infrastructure"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  deploy:
+    uses: Anatolich911/Terraform-Ci/.github/workflows/reusable-terraform-workflow.yml@main
+    with:
+      terraform_directory: 'terraform/development'
+      terraform_version: '1.7.4'
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.PAT }}
+
